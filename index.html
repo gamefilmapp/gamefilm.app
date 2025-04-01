@@ -1,0 +1,1135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Film - Unified Customer Voice Intelligence</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #5D41D6;
+      --primary-dark: #4A34AB;
+      --secondary: #FF8066;
+      --accent: #8466FF;
+      --gray-100: #F8F9FC;
+      --gray-200: #EEF1F6;
+      --gray-300: #DFE3ED;
+      --gray-500: #9DA8BC;
+      --gray-700: #5A6A85;
+      --gray-900: #2E3A4F;
+      --text-dark: #192038;
+      --text-light: #FFFFFF;
+      --border-radius: 8px;
+      --shadow-sm: 0px 4px 8px rgba(21, 23, 48, 0.06);
+      --shadow-md: 0px 8px 16px rgba(21, 23, 48, 0.08);
+      --shadow-lg: 0px 16px 32px rgba(21, 23, 48, 0.10);
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      color: var(--text-dark);
+      background-color: var(--gray-100);
+      overflow-x: hidden;
+    }
+    
+    h1, h2, h3, h4, h5, h6 {
+      line-height: 1.3;
+      font-weight: 700;
+    }
+    
+    a {
+      text-decoration: none;
+      color: var(--primary);
+    }
+    
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    
+    /* Header */
+    header {
+      background-color: white;
+      box-shadow: var(--shadow-sm);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    
+    .header-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 80px;
+    }
+    
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 101; /* Ensure logo stays above mobile menu */
+    }
+    
+    .logo-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      background-color: var(--primary);
+      font-weight: 700;
+      width: 32px;
+      height: 32px;
+      border-radius: 6px;
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+    
+    .nav-links a {
+      color: var(--gray-700);
+      font-weight: 500;
+      transition: color 0.2s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+    
+    .actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 24px;
+      font-weight: 600;
+      border-radius: var(--border-radius);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border: none;
+      font-size: 16px;
+    }
+    
+    .btn-secondary {
+      color: var(--primary);
+      background-color: white;
+      border: 1px solid var(--gray-300);
+    }
+    
+    .btn-secondary:hover {
+      background-color: var(--gray-100);
+    }
+    
+    .btn-primary {
+      color: white;
+      background-color: var(--primary);
+    }
+    
+    .btn-primary:hover {
+      background-color: var(--primary-dark);
+    }
+    
+    /* Mobile menu */
+    .mobile-menu-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 30px;
+      height: 21px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 101;
+    }
+    
+    .mobile-menu-toggle span {
+      width: 100%;
+      height: 3px;
+      background-color: var(--primary);
+      border-radius: 3px;
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(1) {
+      transform: translateY(9px) rotate(45deg);
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .mobile-menu-toggle.active span:nth-child(3) {
+      transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: white;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 100px 32px 32px;
+      z-index: 100;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-menu.active {
+      transform: translateX(0);
+    }
+    
+    .mobile-nav-item {
+      padding: 16px 0;
+      border-bottom: 1px solid var(--gray-200);
+      width: 100%;
+    }
+    
+    .mobile-nav-item a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--gray-900);
+      font-weight: 600;
+      font-size: 18px;
+    }
+    
+    .mobile-nav-item a svg {
+      transition: transform 0.3s ease;
+    }
+    
+    .mobile-nav-item a.active svg {
+      transform: rotate(180deg);
+    }
+    
+    .mobile-menu-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+    
+    /* Hero Section */
+    .hero {
+      padding: 100px 0;
+      background: linear-gradient(150deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      background-image: url('https://api.placeholder.com/800/600');
+      background-size: cover;
+      background-position: center;
+      clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+      opacity: 0.15;
+    }
+    
+    .hero-container {
+      position: relative;
+      z-index: 1;
+      max-width: 800px;
+    }
+    
+    .hero h1 {
+      font-size: 54px;
+      margin-bottom: 24px;
+      line-height: 1.2;
+    }
+    
+    .hero p {
+      font-size: 20px;
+      margin-bottom: 40px;
+      max-width: 600px;
+      opacity: 0.9;
+    }
+    
+    /* Logos Section */
+    .logos {
+      padding: 60px 0;
+      background: white;
+    }
+    
+    .logos-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .logos h2 {
+      color: var(--gray-700);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+    
+    .logo-grid {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+    
+    .logo-item {
+      height: 40px;
+      opacity: 0.7;
+      transition: opacity 0.2s ease;
+    }
+    
+    .logo-item:hover {
+      opacity: 1;
+    }
+    
+    /* Features Section */
+    .features {
+      padding: 100px 0;
+      background-color: white;
+    }
+    
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    
+    .section-header h2 {
+      font-size: 36px;
+      margin-bottom: 16px;
+    }
+    
+    .section-header p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto;
+      color: var(--gray-700);
+    }
+    
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+    }
+    
+    .feature-card {
+      background-color: var(--gray-100);
+      border-radius: var(--border-radius);
+      padding: 32px;
+      box-shadow: var(--shadow-sm);
+      transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .feature-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 60px;
+      height: 60px;
+      margin-bottom: 24px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      font-size: 24px;
+    }
+    
+    .feature-card h3 {
+      font-size: 22px;
+      margin-bottom: 16px;
+    }
+    
+    .feature-card p {
+      color: var(--gray-700);
+      margin-bottom: 16px;
+    }
+    
+    /* For Who Section */
+    .for-who {
+      padding: 100px 0;
+      background-color: var(--gray-100);
+    }
+    
+    .role-tabs {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 40px;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .role-tab {
+      padding: 12px 24px;
+      border-radius: var(--border-radius);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background-color: white;
+      border: 1px solid var(--gray-300);
+      color: var(--gray-700);
+    }
+    
+    .role-tab.active {
+      background-color: var(--primary);
+      color: white;
+      border-color: var(--primary);
+    }
+    
+    .role-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    
+    .role-image {
+      border-radius: var(--border-radius);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+      height: 400px;
+      background-color: var(--gray-300);
+    }
+    
+    .role-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .role-text h3 {
+      font-size: 32px;
+      margin-bottom: 24px;
+    }
+    
+    .benefit-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 24px;
+    }
+    
+    .benefit-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    
+    .benefit-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    
+    .benefit-text h4 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+    
+    .benefit-text p {
+      color: var(--gray-700);
+    }
+    
+    /* Testimonials */
+    .testimonials {
+      padding: 100px 0;
+      background-color: white;
+    }
+    
+    .testimonial-card {
+      background-color: var(--gray-100);
+      border-radius: var(--border-radius);
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      max-width: 800px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .testimonial-content {
+      font-size: 20px;
+      color: var(--gray-900);
+      font-style: italic;
+    }
+    
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    
+    .author-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    
+    .author-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    
+    .author-details h4 {
+      font-size: 18px;
+    }
+    
+    .author-details p {
+      color: var(--gray-700);
+    }
+    
+    /* CTA Section */
+    .cta {
+      padding: 100px 0;
+      background: linear-gradient(150deg, var(--primary) 0%, var(--accent) 100%);
+      color: white;
+      text-align: center;
+    }
+    
+    .cta h2 {
+      font-size: 36px;
+      margin-bottom: 24px;
+    }
+    
+    .cta p {
+      font-size: 20px;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      opacity: 0.9;
+    }
+    
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    
+    .btn-light {
+      background-color: white;
+      color: var(--primary);
+    }
+    
+    .btn-light:hover {
+      background-color: var(--gray-100);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+    
+    .btn-outline:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Footer */
+    footer {
+      background-color: var(--gray-900);
+      color: white;
+      padding: 60px 0;
+    }
+    
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 40px;
+    }
+    
+    .footer-logo {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .footer-text {
+      color: var(--gray-500);
+      margin-bottom: 24px;
+    }
+    
+    .footer-column h3 {
+      font-size: 18px;
+      margin-bottom: 24px;
+      color: white;
+    }
+    
+    .footer-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .footer-links a {
+      color: var(--gray-500);
+      transition: color 0.2s ease;
+    }
+    
+    .footer-links a:hover {
+      color: white;
+    }
+    
+    .copyright {
+      margin-top: 60px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      padding-top: 24px;
+      color: var(--gray-500);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    
+    /* Responsive Design */
+    @media screen and (max-width: 1024px) {
+      .nav-links {
+        gap: 24px;
+      }
+      
+      .btn {
+        padding: 10px 16px;
+      }
+    }
+    
+    @media screen and (max-width: 768px) {
+      .nav-links, .actions {
+        display: none;
+      }
+      
+      .mobile-menu-toggle {
+        display: flex;
+      }
+      
+      .mobile-menu {
+        display: flex;
+      }
+      
+      .hero h1 {
+        font-size: 40px;
+      }
+      
+      .hero p {
+        font-size: 18px;
+      }
+      
+      .role-content {
+        grid-template-columns: 1fr;
+      }
+      
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media screen and (max-width: 480px) {
+      .hero {
+        padding: 60px 0;
+      }
+      
+      .hero h1 {
+        font-size: 32px;
+      }
+      
+      .feature-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container header-container">
+      <div class="logo">
+        <div class="logo-icon">GF</div>
+        Game Film
+      </div>
+      
+      <!-- Desktop Navigation -->
+      <div class="nav-links">
+        <a href="#features">Features</a>
+        <a href="#for-who">Solutions</a>
+        <a href="#testimonials">Customers</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#resources">Resources</a>
+      </div>
+      
+      <!-- Desktop Actions -->
+      <div class="actions">
+        <a href="#login" class="btn btn-secondary">Login</a>
+        <a href="#get-started" class="btn btn-primary">Get Started</a>
+      </div>
+      
+      <!-- Mobile Menu Toggle -->
+      <button class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <!-- Mobile Menu -->
+      <div class="mobile-menu" id="mobile-menu">
+        <div class="mobile-nav-item">
+          <a href="#features">Features</a>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#for-who">Solutions</a>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#testimonials">Customers</a>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#pricing">Pricing</a>
+        </div>
+        <div class="mobile-nav-item">
+          <a href="#resources">Resources</a>
+        </div>
+        
+        <!-- Mobile Actions -->
+        <div class="mobile-menu-actions">
+          <a href="#login" class="btn btn-secondary">Login</a>
+          <a href="#get-started" class="btn btn-primary">Get Started</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  
+  <script>
+    // Mobile menu toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const menuToggle = document.getElementById('mobile-menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      menuToggle.addEventListener('click', function() {
+        menuToggle.classList.toggle('active');
+        mobileMenu.classList.toggle('active');
+        document.body.classList.toggle('menu-open');
+      });
+    });
+  </script>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-container">
+      <h1>Unify the Voice of Your Customer Across Every Interaction</h1>
+      <p>Game Film transforms customer conversations from all touchpoints into actionable intelligence that drives better business decisions.</p>
+      <div class="actions">
+        <a href="#demo" class="btn btn-light">Request a Demo</a>
+        <a href="#learn-more" class="btn btn-outline">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+        <!-- Logos Section -->
+  <section class="logos">
+    <div class="container logos-container">
+      <h2>Trusted by forward-thinking companies</h2>
+      <div class="logo-grid">
+        <img src="https://placehold.co/120x40/EEEEEE/999999?text=Company" alt="Company logo" class="logo-item">
+        <img src="https://placehold.co/120x40/EEEEEE/999999?text=Company" alt="Company logo" class="logo-item">
+        <img src="https://placehold.co/120x40/EEEEEE/999999?text=Company" alt="Company logo" class="logo-item">
+        <img src="https://placehold.co/120x40/EEEEEE/999999?text=Company" alt="Company logo" class="logo-item">
+        <img src="https://placehold.co/120x40/EEEEEE/999999?text=Company" alt="Company logo" class="logo-item">
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features" id="features">
+    <div class="container">
+      <div class="section-header">
+        <h2>The Complete Customer Voice Platform</h2>
+        <p>Game Film connects all your customer interactions to provide holistic insights across your entire organization.</p>
+      </div>
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>Unified Intelligence</h3>
+          <p>Connect data from sales, support, and success calls to create a comprehensive view of customer feedback.</p>
+          <a href="#learn-more">Learn more &rarr;</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3>Natural Language Research</h3>
+          <p>Ask questions in plain English and get instant insights powered by advanced AI analysis.</p>
+          <a href="#learn-more">Learn more &rarr;</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📹</div>
+          <h3>Video Highlights</h3>
+          <p>Jump directly to key moments in customer calls with curated video clips and timestamps.</p>
+          <a href="#learn-more">Learn more &rarr;</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📈</div>
+          <h3>AI Agents</h3>
+          <p>Specialized AI agents for Sales, Product, Customer Success, and Marketing teams.</p>
+          <a href="#learn-more">Learn more &rarr;</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🧠</div>
+          <h3>Cross-Functional Insights</h3>
+          <p>Break down silos between teams with shared understanding of customer needs.</p>
+          <a href="#learn-more">Learn more &rarr;</a>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>Customizable Dashboards</h3>
+          <p>Visualize trends across customer conversations with AI-generated dashboards.</p>
+          <a href="#learn-more">Learn more &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- For Who Section -->
+  <section class="for-who" id="for-who">
+    <div class="container">
+      <div class="section-header">
+        <h2>Customer Intelligence for Every Team</h2>
+        <p>Game Film delivers role-specific insights that drive impact across your organization.</p>
+      </div>
+      <div class="role-tabs">
+        <div class="role-tab active" data-role="sales">Sales</div>
+        <div class="role-tab" data-role="product">Product</div>
+        <div class="role-tab" data-role="customer-success">Customer Success</div>
+        <div class="role-tab" data-role="marketing">Marketing</div>
+        <div class="role-tab" data-role="executive">Executive</div>
+      </div>
+      
+      <!-- Sales Role Content -->
+      <div class="role-content" id="sales-content" style="display: grid;">
+        <div class="role-image">
+          <img src="https://placehold.co/600x400/5D41D6/FFFFFF?text=Sales+Dashboard" alt="Sales Intelligence Dashboard">
+        </div>
+        <div class="role-text">
+          <h3>Elevate Your Sales Performance</h3>
+          <p>Game Film transforms your sales conversations into a strategic advantage, helping you understand objections, perfect your pitch, and close more deals.</p>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Win/Loss Analysis</h4>
+                <p>Identify patterns in won and lost deals to optimize your sales strategy.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Objection Handling</h4>
+                <p>Learn how top performers address common objections with video examples.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Competitive Intelligence</h4>
+                <p>Track competitor mentions and understand how to position against them.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Product Role Content -->
+      <div class="role-content" id="product-content" style="display: none;">
+        <div class="role-image">
+          <img src="https://placehold.co/600x400/5D41D6/FFFFFF?text=Product+Dashboard" alt="Product Intelligence Dashboard">
+        </div>
+        <div class="role-text">
+          <h3>Build Products Customers Actually Want</h3>
+          <p>Game Film provides direct customer feedback on features, usability, and competitors to inform your product roadmap and prioritization.</p>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Feature Request Tracking</h4>
+                <p>Quantify and prioritize customer requests with evidence from actual conversations.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>User Pain Point Detection</h4>
+                <p>Identify friction points and usability issues mentioned during customer calls.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Competitive Feature Analysis</h4>
+                <p>Understand how your product compares to competitors from the customer's perspective.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Customer Success Role Content -->
+      <div class="role-content" id="customer-success-content" style="display: none;">
+        <div class="role-image">
+          <img src="https://placehold.co/600x400/5D41D6/FFFFFF?text=Customer+Success+Dashboard" alt="Customer Success Intelligence Dashboard">
+        </div>
+        <div class="role-text">
+          <h3>Proactively Address Customer Needs</h3>
+          <p>Game Film helps customer success teams identify at-risk accounts, expansion opportunities, and recurring issues before they escalate.</p>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Churn Risk Prediction</h4>
+                <p>Identify early warning signs of dissatisfaction through sentiment and usage pattern analysis.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Expansion Opportunity Finder</h4>
+                <p>Discover upsell and cross-sell opportunities based on expressed needs and usage patterns.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Customer Journey Mapping</h4>
+                <p>Visualize the customer experience from onboarding to renewal to identify friction points.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Marketing Role Content -->
+      <div class="role-content" id="marketing-content" style="display: none;">
+        <div class="role-image">
+          <img src="https://placehold.co/600x400/5D41D6/FFFFFF?text=Marketing+Dashboard" alt="Marketing Intelligence Dashboard">
+        </div>
+        <div class="role-text">
+          <h3>Create Messaging That Resonates</h3>
+          <p>Game Film translates customer conversations into marketing insights that improve positioning, messaging, and campaign effectiveness.</p>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Voice of Customer Analysis</h4>
+                <p>Understand the exact language customers use to describe their problems and your solution.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Messaging Effectiveness Tracking</h4>
+                <p>Measure how your marketing messages land with prospects in real conversations.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Competitor Positioning Analysis</h4>
+                <p>Identify how competitors are positioned in customer minds and how to differentiate.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Executive Role Content -->
+      <div class="role-content" id="executive-content" style="display: none;">
+        <div class="role-image">
+          <img src="https://placehold.co/600x400/5D41D6/FFFFFF?text=Executive+Dashboard" alt="Executive Intelligence Dashboard">
+        </div>
+        <div class="role-text">
+          <h3>Data-Driven Executive Decisions</h3>
+          <p>Game Film provides executives with a direct window into customer sentiment, market trends, and operational effectiveness.</p>
+          <div class="benefit-list">
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Market Trend Detection</h4>
+                <p>Identify emerging patterns and shifts across all customer conversations.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Product-Market Fit Analysis</h4>
+                <p>Gauge alignment between customer needs and your current offerings.</p>
+              </div>
+            </div>
+            <div class="benefit-item">
+              <div class="benefit-icon">✓</div>
+              <div class="benefit-text">
+                <h4>Operational Effectiveness</h4>
+                <p>Understand how well your teams respond to customer needs across departments.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <script>
+      // Role tab functionality
+      document.addEventListener('DOMContentLoaded', function() {
+        const roleTabs = document.querySelectorAll('.role-tab');
+        
+        roleTabs.forEach(tab => {
+          tab.addEventListener('click', function() {
+            // Deactivate all tabs
+            roleTabs.forEach(t => t.classList.remove('active'));
+            
+            // Activate clicked tab
+            this.classList.add('active');
+            
+            // Hide all role content
+            const allContent = document.querySelectorAll('.role-content');
+            allContent.forEach(content => {
+              content.style.display = 'none';
+            });
+            
+            // Show selected role content
+            const roleId = this.getAttribute('data-role');
+            const selectedContent = document.getElementById(roleId + '-content');
+            if (selectedContent) {
+              selectedContent.style.display = 'grid';
+            }
+          });
+        });
+      });
+    </script>
+  </section>
+
+        <!-- Testimonials Section -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2>What Our Customers Say</h2>
+        <p>See how Game Film is transforming organizations with unified customer intelligence.</p>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-content">
+          "Game Film has completely transformed how we understand customer feedback. Instead of information being siloed across departments, we now have a unified view of what our customers are saying across every touchpoint. This has led to faster product improvements, more effective marketing messaging, and ultimately better customer experiences."
+        </div>
+        <div class="testimonial-author">
+          <div class="author-image">
+            <img src="https://placehold.co/60x60/EEEEEE/999999?text=SJ" alt="Sarah Johnson">
+          </div>
+          <div class="author-details">
+            <h4>Sarah Johnson</h4>
+            <p>Chief Customer Officer, TechInnovate</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="cta">
+    <div class="container">
+      <h2>Start Unifying Your Customer Voice Today</h2>
+      <p>Join forward-thinking companies that are breaking down silos and building a customer-centric organization with Game Film.</p>
+      <div class="cta-buttons">
+        <a href="#demo" class="btn btn-light">Request a Demo</a>
+        <a href="#learn-more" class="btn btn-outline">Learn How It Works</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <div class="footer-logo">
+            <div class="logo-icon">GF</div>
+            Game Film
+          </div>
+          <p class="footer-text">Unified customer voice intelligence platform that transforms customer conversations into actionable insights across your organization.</p>
+        </div>
+        <div class="footer-column">
+          <h3>Product</h3>
+          <div class="footer-links">
+            <a href="#features">Features</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#security">Security</a>
+            <a href="#enterprise">Enterprise</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Resources</h3>
+          <div class="footer-links">
+            <a href="#blog">Blog</a>
+            <a href="#guides">Guides</a>
+            <a href="#webinars">Webinars</a>
+            <a href="#documentation">Documentation</a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Company</h3>
+          <div class="footer-links">
+            <a href="#about">About Us</a>
+            <a href="#careers">Careers</a>
+            <a href="#contact">Contact</a>
+            <a href="#partners">Partners</a>
+          </div>
+        </div>
+      </div>
+      <div class="copyright">
+        <p>© 2025 Game Film. All rights reserved.</p>
+        <div class="footer-links" style="flex-direction: row; gap: 24px;">
+          <a href="#terms">Terms</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#cookies">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
